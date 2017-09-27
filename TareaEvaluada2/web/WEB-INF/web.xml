@@ -4,9 +4,17 @@
         <servlet-name>ControladorProducto</servlet-name>
         <servlet-class>com.controlador.ControladorProducto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IniciarSesion</servlet-name>
+        <servlet-class>com.controlador.IniciarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorProducto</servlet-name>
         <url-pattern>/controladorProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IniciarSesion</servlet-name>
+        <url-pattern>/iniciarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

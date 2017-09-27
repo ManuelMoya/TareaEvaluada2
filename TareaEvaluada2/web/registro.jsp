@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 21-sep-2017, 16:40:41
+    Document   : registro
+    Created on : 27-sep-2017, 9:06:15
     Author     : Akroma
 --%>
 
@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <a href="productos.jsp">productos</a>
+        <a href="login.jsp">retornar</a>
     </body>
 </html>
