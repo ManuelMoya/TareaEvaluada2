@@ -66,12 +66,13 @@ public class CrudProducto extends Conexion{
     }
     public void modificarProducto(Producto pro) throws Exception{
         this.conectar();
-        String sql="update producto set nombreP=? , precioP=?, idProducto=? ";
+        String sql="update producto set nombreP=?, precioP=? where idProducto=? ";
         PreparedStatement pst=this.getCon().prepareStatement(sql);
         try {
-            pst.setInt(1,pro.getIdProducto());
-            pst.setString(2, pro.getNombre());
-            pst.setDouble(3,pro.getPrecio());
+            
+            pst.setString(1, pro.getNombre());
+            pst.setDouble(2,pro.getPrecio());
+            pst.setInt(3,pro.getIdProducto());
             pst.executeUpdate();
             
         } catch (Exception e) {
