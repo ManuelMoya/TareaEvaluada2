@@ -50,7 +50,7 @@
         <% out.print(cerrar); %>
         <center>
         <table border="2">
-            <form action="procesarProducto" name="frmProducto" method="POST">
+            <form action="controladorProducto" name="frmProducto" method="POST">
                 <tr>
                     <%
                     CrudProducto obj=new CrudProducto();
@@ -99,7 +99,7 @@
                       <td><%= ve.getIdProducto()%></td>
                       <td><%= ve.getNombre()%></td>
                       <td><%= ve.getPrecio() %></td>
-                      <td><a href="javascript:cargar(<%=ve.getIdProducto() %>,'<%=ve.getNombre()%>','<%=ve.getPrecio() %>',">Seleccionar</a></td>
+                      <td><a href="javascript:cargar(<%= ve.getIdProducto() %>,'<%= ve.getNombre()%>','<%= ve.getPrecio() %>')">Seleccionar</a></td>
                       </tr>
                   <%
                   }
