@@ -123,7 +123,7 @@
                   <tr>
                       <td><%= ve.getIdProducto()%></td>
                       <td><%= ve.getNombre()%></td>
-                      <td><%= ve.getPrecio() %></td>
+                      <td>$ <%= ve.getPrecio() %></td>
                       <td><%= ve.getExistencia()%></td>
                       <td><%= ve.getCategoria()%></td>
                       <td><a href="javascript:cargar(<%= ve.getIdProducto() %>,
