@@ -43,7 +43,7 @@ public class ControladorProducto extends HttpServlet {
                    cpro.eliminarProducto(pro);;
                    val="Datos eliminados correctamente";
                 }
-                rd=request.getRequestDispatcher("index.jsp");
+                rd=request.getRequestDispatcher("productos.jsp");
                 request.setAttribute("valor", val);
             }catch(Exception e) {
                 request.setAttribute("error", e.toString());
