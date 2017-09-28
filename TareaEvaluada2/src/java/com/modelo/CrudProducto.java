@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.modelo;
 
 import com.conexion.Conexion;
@@ -31,6 +27,8 @@ public class CrudProducto extends Conexion{
                 prod.setIdProducto(rs.getInt("idProducto"));
                 prod.setNombre(rs.getString("nombreP"));
                 prod.setPrecio(rs.getDouble("precioP"));
+                prod.setExistencia(rs.getInt("existencia"));
+                prod.setCategoria(rs.getInt("categoria"));
                 lst.add(prod);
             }
         } 
@@ -47,14 +45,16 @@ public class CrudProducto extends Conexion{
     
     public void insertarProducto(Producto pro) throws Exception{
         this.conectar();
-        String sql="insert into producto values(?,?,?)";
+        String sql="insert into producto values(null,?,?,?,?)";
         PreparedStatement pst=this.getCon().prepareStatement(sql);
         
         try 
         {
-            pst.setInt(1,pro.getIdProducto());
-            pst.setString(2, pro.getNombre());
-            pst.setDouble(3,pro.getPrecio());
+            //pst.setInt(1,pro.getIdProducto());
+            pst.setString(1, pro.getNombre());
+            pst.setDouble(2,pro.getPrecio());
+            pst.setInt(3, pro.getExistencia());
+            pst.setInt(4, pro.getCategoria());
             pst.executeUpdate();
         } catch (Exception e) {
            throw e;
@@ -66,13 +66,15 @@ public class CrudProducto extends Conexion{
     }
     public void modificarProducto(Producto pro) throws Exception{
         this.conectar();
-        String sql="update producto set nombreP=?, precioP=? where idProducto=? ";
+        String sql="update producto set nombreP=?, precioP=?, existencia=?, categoria=? where idProducto=? ";
         PreparedStatement pst=this.getCon().prepareStatement(sql);
         try {
             
             pst.setString(1, pro.getNombre());
             pst.setDouble(2,pro.getPrecio());
-            pst.setInt(3,pro.getIdProducto());
+            pst.setInt(3, pro.getExistencia());
+            pst.setInt(4, pro.getCategoria());
+            pst.setInt(5,pro.getIdProducto());
             pst.executeUpdate();
             
         } catch (Exception e) {

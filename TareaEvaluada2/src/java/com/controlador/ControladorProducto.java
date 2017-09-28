@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.controlador;
 
 import com.modelo.CrudProducto;
@@ -21,15 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ControladorProducto extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,6 +31,8 @@ public class ControladorProducto extends HttpServlet {
                 pro.setIdProducto(Integer.parseInt(request.getParameter("cod")));
                 pro.setNombre(request.getParameter("nom"));
                 pro.setPrecio(Double.parseDouble(request.getParameter("precio")));
+                pro.setExistencia(Integer.parseInt(request.getParameter("existe")));
+                pro.setCategoria(Integer.parseInt(request.getParameter("categoria")));
                 if(request.getParameter("insertar") != null){
                     cpro.insertarProducto(pro);
                     val="Datos insertados correctamente";

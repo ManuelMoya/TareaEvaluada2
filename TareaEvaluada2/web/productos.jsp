@@ -13,10 +13,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <script Language='JavaScript'>
-        function cargar(codigo, nombre, precio){
+        function cargar(codigo, nombre, precio,existencia,categoria){
                 document.frmProducto.cod.value=codigo;
                 document.frmProducto.nom.value=nombre;
                 document.frmProducto.precio.value=precio;
+                document.frmProducto.existe.value=existencia;
+                document.frmProducto.categoria.value=categoria;
+                
             }
             </script>
             <%
@@ -31,6 +34,7 @@
     </head>
     <%
     CrudProducto crud=new CrudProducto();
+    CrudCategoria cc = new CrudCategoria();
     %>
     <body>
         <%
@@ -69,6 +73,25 @@
                     <td><input type="text" name="precio"></td>
                 </tr>
                 <tr>
+                    <td>Existencia</td>
+                    <td><input type="text" name="existe"></td>
+                </tr>
+                <tr>
+                    <td>Categoria</td>
+                    <td>
+                        <select name="categoria">
+                            <%
+                                List<Categoria> cat = cc.mostrarCategoria();
+                                for(Categoria c: cat){
+                            %>
+                            <option value="<%=c.getIdCategoria()%>"><%=c.getCategoria()%></option>
+                            <%        
+                                }
+                            %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2">
                         <input type="submit" name="insertar" value="Insertar">
                         <input type="submit" name="modificar" value="Modificar">
@@ -87,6 +110,8 @@
                       <th>Codigo Producto</th>
                       <th>Nombre</th>
                       <th>Precio</th>
+                      <th>Existencias</th>
+                      <th>Categoria</th>
                       <th>Seleccionar</th>
                   </tr>
               </thead>
@@ -99,7 +124,12 @@
                       <td><%= ve.getIdProducto()%></td>
                       <td><%= ve.getNombre()%></td>
                       <td><%= ve.getPrecio() %></td>
-                      <td><a href="javascript:cargar(<%= ve.getIdProducto() %>,'<%= ve.getNombre()%>','<%= ve.getPrecio() %>')">Seleccionar</a></td>
+                      <td><%= ve.getExistencia()%></td>
+                      <td><%= ve.getCategoria()%></td>
+                      <td><a href="javascript:cargar(<%= ve.getIdProducto() %>,
+                             '<%= ve.getNombre()%>','<%= ve.getPrecio() %>',
+                             '<%= ve.getExistencia()%>','<%= ve.getCategoria()%>'
+                             )">Seleccionar</a></td>
                       </tr>
                   <%
                   }
