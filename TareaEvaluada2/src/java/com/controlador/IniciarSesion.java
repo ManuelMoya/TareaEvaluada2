@@ -2,6 +2,7 @@
 package com.controlador;
 
 import com.modelo.Ingreso;
+import com.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -24,13 +25,26 @@ public class IniciarSesion extends HttpServlet {
             if (request.getParameter("btnEnviar")!= null) {
                 String usuario = request.getParameter("txtUser");
                 String contra = request.getParameter("txtPass");
+                Usuario user =new Usuario();
                 Ingreso ob = new Ingreso();
-            
-            if (ob.autenticar(usuario, contra)) {
+                user=ob.autenticar(usuario, contra);
+            if (user != null) {
                 HttpSession objSession = request.getSession(false);
                 objSession.setAttribute("usuario", usuario);
-                
-                response.sendRedirect("index.jsp");
+                switch(user.getRol()){
+                    case 1:
+                        response.sendRedirect("administracion.jsp");
+                        break;
+                    case 2:
+                        response.sendRedirect("gerencia.jsp");
+                        break;
+                    case 3:
+                        response.sendRedirect("tienda.jsp");
+                        break;
+                    default:
+                        response.sendRedirect("registro.jsp");
+                        break;                            
+                }                
             }else
             {
                 response.sendRedirect("registro.jsp");

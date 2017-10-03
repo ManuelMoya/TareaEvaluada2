@@ -9,9 +9,10 @@ import java.sql.*;
  * @author Akroma
  */
 public class Ingreso extends Conexion{
-    public boolean autenticar(String user, String pass) throws Exception
+    public Usuario autenticar(String user, String pass) throws Exception
     {
         ResultSet rs;
+        Usuario usuario = new Usuario();
         try {
             this.conectar();
             String sql = "select * from usuarios where usuario=? and clave=?";
@@ -20,7 +21,8 @@ public class Ingreso extends Conexion{
             pre.setString(2, pass);
             rs=pre.executeQuery();
             if (rs.absolute(1)) {
-                return true;
+                usuario.setRol(rs.getInt("rol"));
+                return usuario;
             }
         } catch (Exception e) {
             throw e;
@@ -29,6 +31,6 @@ public class Ingreso extends Conexion{
         {
             this.desconectar();
         }
-        return false;
+        return usuario;
     }
 }
