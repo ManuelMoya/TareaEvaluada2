@@ -94,8 +94,8 @@
                 <tr>
                     <td colspan="2">
                         <input type="submit" name="insertar" value="Insertar">
-                        <input type="submit" name="modificar" value="Modificar">
-                        <input type="submit" name="eliminar" value="Eliminar">
+                        <input type="submit" name="modificar" value="Modificar" onclick="if(!confirm('¿Está seguro que desea modificar el registro?'))return false;">
+                        <input type="submit" name="eliminar" value="Eliminar" onclick="if(!confirm('¿Está seguro que desea eliminar el registro?'))return false;">
                         <input type="reset" name="limpiar" value="Limpiar">
                     </td>
                 </tr>
