@@ -24,6 +24,19 @@
         CrudCategoria crc=new CrudCategoria();
     %>
     <body>
+	<%
+           String cerrar="";
+            HttpSession objSesion=request.getSession(false);
+            String usuario=(String) objSesion.getAttribute("usuario");
+            if(usuario.equals(""))
+            {
+                response.sendRedirect("registro.jsp");
+            }
+            else
+            {
+                cerrar="<a href='cerrarsesion.jsp'>Cerrar sesion</a>";
+            }
+        %>
         <h1></h1>
         <div id="top">
             <div class="shell">
